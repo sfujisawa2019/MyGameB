@@ -103,7 +103,7 @@ bool HelloWorld::init()
 	// 元の104~117までを削除した
 	sprite = Sprite::create("kuma.png");
 	this->addChild(sprite);
-	sprite->setPosition(Vec2(1280 /2.0f, 720/2.0f));
+	sprite->setPosition(Vec2(1280-100, 720-100));
 	sprite->setScale(0.2f);
 	//sprite->setVisible(false);
 	//                        R    G    B
@@ -134,7 +134,8 @@ void HelloWorld::update(float delta)
 	// 現在の座標を取得
 	Vec2 pos = sprite->getPosition();
 	// 少し動かす
-	pos += Vec2(-1.0f, -1.0f);
+	pos += Vec2(-1.0f, 0);
+	//pos.x -= 1.0f;
 	// 座標を反映
 	sprite->setPosition(pos);
 }
