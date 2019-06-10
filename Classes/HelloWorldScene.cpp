@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  
  http://www.cocos2d-x.org
@@ -39,7 +39,7 @@ static void problemLoading(const char* filename)
     printf("Depending on how you compiled you might have to add 'Resources/' in front of filenames in HelloWorldScene.cpp\n");
 }
 
-// on "init" you need to initialize your instance
+// シーンの初期化(一度だけ実行される)
 bool HelloWorld::init()
 {
     //////////////////////////////
@@ -100,9 +100,18 @@ bool HelloWorld::init()
         // add the label as a child to this layer
         this->addChild(label, 1);
     }
-
-	Sprite* sprite = Sprite::create("kuma.png");
+	// 元の104~117までを削除した
+	sprite = Sprite::create("kuma.png");
 	this->addChild(sprite);
+	sprite->setPosition(Vec2(1280 /2.0f, 720/2.0f));
+	sprite->setScale(0.2f);
+	//sprite->setVisible(false);
+	//                        R    G    B
+	//sprite->setColor(Color3B(255, 0, 0));
+	//sprite->setOpacity(0);
+	// update関数を有効にする
+	this->scheduleUpdate();
+
     return true;
 }
 
@@ -118,4 +127,14 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
     //_eventDispatcher->dispatchEvent(&customEndEvent);
 
 
+}
+
+void HelloWorld::update(float delta)
+{
+	// 現在の座標を取得
+	Vec2 pos = sprite->getPosition();
+	// 少し動かす
+	pos += Vec2(-1.0f, -1.0f);
+	// 座標を反映
+	sprite->setPosition(pos);
 }
