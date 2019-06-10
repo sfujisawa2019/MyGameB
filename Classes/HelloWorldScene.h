@@ -44,6 +44,9 @@ public:
 
 	cocos2d::Sprite* sprite;
 
+	// 移動方向 0:左移動 1:下移動 2:右移動 3:上移動
+	int state;
+
 	//float opacity;
 };
 
