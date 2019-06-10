@@ -44,7 +44,7 @@ public:
 
 	cocos2d::Sprite* sprite;
 
-	float opacity;
+	//float opacity;
 };
 
 #endif // __HELLOWORLD_SCENE_H__
