@@ -49,6 +49,9 @@ public:
 	int state;
 
 	//float opacity;
+
+	// 角度
+	float rot;
 };
 
 #endif // __HELLOWORLD_SCENE_H__

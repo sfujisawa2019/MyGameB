@@ -101,18 +101,21 @@ bool HelloWorld::init()
         this->addChild(label, 1);
     }
 	// 元の104~117までを削除した
-	sprite = Sprite::create("sample03.png");
+	sprite = Sprite::create("kuma.png");
 	this->addChild(sprite);
 	sprite->setPosition(Vec2(visibleSize.width / 2.0f, visibleSize.height / 2.0f));
-	sprite->setScale(5.0f);
-	sprite->setTextureRect(Rect(64, 0, 32, 32));
+
+	//sprite->setScale(5.0f);
+	//sprite->setTextureRect(Rect(64, 0, 32, 32));
 	//sprite->setFlippedX(true);
 	// 画像の基準点（アンカーポイント）を設定
-	//sprite->setAnchorPoint(Vec2(1, 1));
+	// (0,0)…左下
+	// (1,1)…右上
+	sprite->setAnchorPoint(Vec2(0, 1));
 	//sprite->setRotation(135.0f);
 	//sprite->setVisible(false);
 	//                        R    G    B
-	//sprite->setColor(Color3B(255,   0,   0));
+	//sprite->setColor(Color3B(  0,   0,   0));
 	//sprite->setColor(Color3B(  0,   0, 255));
 	//opacity = 255.0f;
 
@@ -122,6 +125,8 @@ bool HelloWorld::init()
 
 	// 左移動
 	state = 0;
+
+	rot = 0;
 
     return true;
 }
@@ -143,4 +148,6 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
 void HelloWorld::update(float delta)
 {
 
+	rot += 10.0f;
+	sprite->setRotation(rot);
 }
