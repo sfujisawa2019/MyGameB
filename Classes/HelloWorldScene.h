@@ -55,6 +55,9 @@ public:
 
 	// 青
 	float blue;
+
+	// 不透明度
+	float opacity;
 };
 
 #endif // __HELLOWORLD_SCENE_H__
