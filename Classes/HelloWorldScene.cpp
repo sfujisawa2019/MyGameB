@@ -49,7 +49,7 @@ bool HelloWorld::init()
         return false;
     }
 
-    auto visibleSize = Director::getInstance()->getVisibleSize();
+    Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
     /////////////////////////////
@@ -101,13 +101,19 @@ bool HelloWorld::init()
         this->addChild(label, 1);
     }
 	// 元の104~117までを削除した
-	sprite = Sprite::create("kuma.png");
+	sprite = Sprite::create("sample03.png");
 	this->addChild(sprite);
-	sprite->setPosition(Vec2(1280-100, 720-100));
-	sprite->setScale(0.2f);
+	sprite->setPosition(Vec2(visibleSize.width / 2.0f, visibleSize.height / 2.0f));
+	sprite->setScale(5.0f);
+	sprite->setTextureRect(Rect(64, 0, 32, 32));
+	//sprite->setFlippedX(true);
+	// 画像の基準点（アンカーポイント）を設定
+	//sprite->setAnchorPoint(Vec2(1, 1));
+	//sprite->setRotation(135.0f);
 	//sprite->setVisible(false);
 	//                        R    G    B
-	//sprite->setColor(Color3B(255, 0, 0));
+	//sprite->setColor(Color3B(255,   0,   0));
+	//sprite->setColor(Color3B(  0,   0, 255));
 	//opacity = 255.0f;
 
 	//sprite->setOpacity(opacity);
@@ -136,42 +142,5 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
 
 void HelloWorld::update(float delta)
 {
-	Vec2 pos;
-	switch (state)
-	{
-	case 0: // 左移動
-		pos = sprite->getPosition();
-		pos += Vec2(-5.0f, 0);
-		sprite->setPosition(pos);
-		if (pos.x <= 100)
-		{
-			state = 1; //　下移動に切り替え
-		}
-		break;
-	case 1: // 下移動
-		pos = sprite->getPosition();
-		pos += Vec2(0.0f, -5.0f);
-		sprite->setPosition(pos);
-		if (pos.y <= 100)
-		{
-			state = 2; //　右移動に切り替え
-		}
-		break;
-	case 2: // 右移動
-		break;
-	case 3: // 上移動
-		break;
-	}
 
-	
-
-	// 5秒間で255減らす
-	// 300frameで255減らす
-	// 255を300回に分けて減らす
-	//opacity -= 255.0f/300.0f;
-	//if (opacity < 0.0f)
-	//{
-	//	opacity = 0.0f;
-	//}
-	//sprite->setOpacity(opacity);
 }
