@@ -111,7 +111,7 @@ bool HelloWorld::init()
 	// 画像の基準点（アンカーポイント）を設定
 	// (0,0)…左下
 	// (1,1)…右上
-	sprite->setAnchorPoint(Vec2(0, 1));
+	//sprite->setAnchorPoint(Vec2(0, 1));
 	//sprite->setRotation(135.0f);
 	//sprite->setVisible(false);
 	//                        R    G    B
@@ -127,6 +127,8 @@ bool HelloWorld::init()
 	state = 0;
 
 	rot = 0;
+
+	blue = 0;
 
     return true;
 }
@@ -147,7 +149,15 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
 
 void HelloWorld::update(float delta)
 {
+	// 255を180分割した量を足す
+	blue += 255.0f / 180.0f;
+	// 上限値を超えない為の処理
+	if (blue > 255.0f)
+	{
+		blue = 255.0f;
+	}
+	sprite->setColor(Color3B(255.0f - blue, 0, blue));
 
-	rot += 10.0f;
-	sprite->setRotation(rot);
+	//rot += 10.0f;
+	//sprite->setRotation(rot);
 }

@@ -52,6 +52,9 @@ public:
 
 	// 角度
 	float rot;
+
+	// 青
+	float blue;
 };
 
 #endif // __HELLOWORLD_SCENE_H__
