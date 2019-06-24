@@ -105,9 +105,9 @@ bool HelloWorld::init()
 	this->addChild(sprite);
 	sprite->setPosition(Vec2(visibleSize.width / 2.0f, visibleSize.height / 2.0f));
 
-	sprite2 = Sprite::create("panda.jpg");
-	this->addChild(sprite2);
-	sprite2->setPosition(Vec2(visibleSize.width / 2.0f, visibleSize.height / 2.0f));
+	//sprite2 = Sprite::create("panda.jpg");
+	//this->addChild(sprite2);
+	//sprite2->setPosition(Vec2(visibleSize.width / 2.0f, visibleSize.height / 2.0f));
 
 
 	//sprite->setScale(5.0f);
@@ -128,15 +128,6 @@ bool HelloWorld::init()
 	// update関数を有効にする
 	this->scheduleUpdate();
 
-	// 左移動
-	state = 0;
-
-	rot = 0;
-
-	blue = 0;
-
-	opacity = 0;
-
     return true;
 }
 
@@ -156,25 +147,5 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
 
 void HelloWorld::update(float delta)
 {
-	opacity += 1.0f;
-	if (opacity > 255.0f)
-	{
-		opacity = 255.0f;
-	}
-	// くまをフェードアウト
-	sprite->setOpacity(255.0f - opacity);
-	// パンダをフェードイン
-	sprite2->setOpacity(opacity);
 
-	//// 255を180分割した量を足す
-	//blue += 255.0f / 180.0f;
-	//// 上限値を超えない為の処理
-	//if (blue > 255.0f)
-	//{
-	//	blue = 255.0f;
-	//}
-	//sprite->setColor(Color3B(255.0f - blue, 0, blue));
-
-	//rot += 10.0f;
-	//sprite->setRotation(rot);
 }

@@ -44,20 +44,6 @@ public:
 
 	cocos2d::Sprite* sprite;
 	cocos2d::Sprite* sprite2;
-
-	// 移動方向 0:左移動 1:下移動 2:右移動 3:上移動
-	int state;
-
-	//float opacity;
-
-	// 角度
-	float rot;
-
-	// 青
-	float blue;
-
-	// 不透明度
-	float opacity;
 };
 
 #endif // __HELLOWORLD_SCENE_H__
