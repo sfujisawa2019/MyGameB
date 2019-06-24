@@ -105,37 +105,33 @@ bool HelloWorld::init()
 	// Random r = new Random();
 	srand(time(nullptr));
 
-	//for (int i = 0; i < 5; i++)
-	//{
-	//	sprite[i] = Sprite::create("kuma.png");
-	//	this->addChild(sprite[i]);
-	//	sprite[i]->setPosition(Vec2(200 * i, visibleSize.height / 2.0f));
-	//	sprite[i]->setScale(0.2f);
+	for (int i = 0; i < 10; i++)
+	{
+		sprite[i] = Sprite::create("kuma.png");
+		this->addChild(sprite[i]);
+		sprite[i]->setPosition(Vec2(100 * i, visibleSize.height / 2.0f));
+		sprite[i]->setScale(0.1f);
 
-	//	float mx, my;
-	//	mx = (float)rand()/RAND_MAX * 500;
-	//	my = (float)rand()/RAND_MAX * 500;
+		JumpBy* action1 = JumpBy::create(1.0f, Vec2(300, 0), 300, 1);
+		sprite[i]->runAction(action1);
+	}
 
-	//	MoveBy* action1 = MoveBy::create(1.0f, Vec2(mx, my));
-	//	sprite[i]->runAction(action1);
-	//}
+	//// spriteの生成
+	//sprite = Sprite::create("kuma.png");
+	//this->addChild(sprite);
+	//sprite->setPosition(Vec2(visibleSize.width / 2.0f, visibleSize.height / 2.0f));
+	//sprite->setScale(0.2f);
 
-	// spriteの生成
-	sprite = Sprite::create("kuma.png");
-	this->addChild(sprite);
-	sprite->setPosition(Vec2(visibleSize.width / 2.0f, visibleSize.height / 2.0f));
-	sprite->setScale(0.2f);
+	//// sprite2の生成
+	//sprite2 = Sprite::create("panda.jpg");
+	//this->addChild(sprite2);
+	//sprite2->setPosition(Vec2(900, visibleSize.height / 2.0f));
+	//sprite2->setScale(0.2f);
 
-	// sprite2の生成
-	sprite2 = Sprite::create("panda.jpg");
-	this->addChild(sprite2);
-	sprite2->setPosition(Vec2(900, visibleSize.height / 2.0f));
-	sprite2->setScale(0.2f);
-
-	// action1の生成
-	JumpBy* action1 = JumpBy::create(1.0f, Vec2(300, 0), 300, 1);
-	sprite->runAction(action1);
-	sprite2->runAction(action1->clone());
+	//// action1の生成
+	//JumpBy* action1 = JumpBy::create(1.0f, Vec2(300, 0), 300, 1);
+	//sprite->runAction(action1);
+	//sprite2->runAction(action1->clone());
 	//// action2の生成
 	//MoveBy* action2 = MoveBy::create(1.0f, Vec2(400, 200));
 	//sprite2->runAction(action2);
