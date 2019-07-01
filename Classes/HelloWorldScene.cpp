@@ -104,16 +104,24 @@ bool HelloWorld::init()
 	// スプライトの生成
 	Sprite* spr = Sprite::create("HelloWorld.png");
 	this->addChild(spr);
+	spr->setPosition(Vec2(600, 600));
+	//// スプライトの解放
+	//spr->removeFromParent();
 
 	MoveTo* moveTo = MoveTo::create(0.5f, Vec2(600.0f, 300.0f));
 	// 指定秒数待つアクションの生成
 	DelayTime* delay = DelayTime::create(1.0f);
+	// スプライト解放アクションの生成
+	RemoveSelf * remove = RemoveSelf::create();
 
-	JumpBy* jumpBy = JumpBy::create(0.5f, Vec2(100.0f, 100.0f), 100.0f, 1);
-	//// 繰り返しアクションの生成
-	//Repeat* rep = Repeat::create(jumpBy, 5);
+	Sequence* seq = Sequence::create(moveTo, delay, remove, nullptr);
+	////Hide* hide = Hide::create();
+	//ToggleVisibility* toggle = ToggleVisibility::create();
 
-	Sequence* seq = Sequence::create(moveTo, delay, jumpBy, nullptr);
+	////JumpBy* jumpBy = JumpBy::create(0.5f, Vec2(100.0f, 100.0f), 100.0f, 1);
+	////// 繰り返しアクションの生成
+	//Repeat* rep = Repeat::create(seq, 6);
+
 
 	spr->runAction(seq);
 
