@@ -105,15 +105,17 @@ bool HelloWorld::init()
 	Sprite* spr = Sprite::create("HelloWorld.png");
 	this->addChild(spr);
 
-	MoveTo* action1 = MoveTo::create(2.0f, Vec2(600.0f, 300.0f));
+	MoveTo* moveTo = MoveTo::create(2.0f, Vec2(600.0f, 300.0f));
 
-	JumpTo* action2 = JumpTo::create(1.0f, Vec2(200.0f, 200.0f), 300.0f, 2);
+	JumpTo* jumpTo = JumpTo::create(1.0f, Vec2(200.0f, 200.0f), 300.0f, 2);
 
 	TintTo* tintTo = TintTo::create(1.0f, Color3B(255, 255, 0));
+	// 同時発動アクションの生成
+	Spawn* spawn = Spawn::create(jumpTo, tintTo, nullptr);
+	// 連続アクションの生成
+	Sequence* seq = Sequence::create(moveTo, spawn, nullptr);
 
-	Sequence* action3 = Sequence::create(action1, action2, tintTo, nullptr);
-
-	spr->runAction(action3);
+	spr->runAction(seq);
 
 
 	// update関数を有効にする
