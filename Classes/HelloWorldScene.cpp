@@ -101,81 +101,21 @@ bool HelloWorld::init()
         this->addChild(label, 1);
     }
 
-	// 乱数の初期化
-	// Random r = new Random();
-	srand(time(nullptr));
+	// スプライトの生成
+	Sprite* spr = Sprite::create("HelloWorld.png");
+	this->addChild(spr);
 
-	for (int i = 0; i < 10; i++)
-	{
-		float sx, sy;
-		sx = (float)rand() / RAND_MAX * visibleSize.width;
-		sy = (float)rand() / RAND_MAX * visibleSize.height;
+	MoveTo* action1 = MoveTo::create(2.0f, Vec2(600.0f, 300.0f));
 
-		sprite[i] = Sprite::create("kuma.png");
-		this->addChild(sprite[i]);
-		sprite[i]->setPosition(Vec2(sx, sy));
-		sprite[i]->setScale(0.1f);
+	JumpTo* action2 = JumpTo::create(1.0f, Vec2(200.0f, 200.0f), 300.0f, 2);
 
-		float ex, ey;
-		ex = (float)rand() / RAND_MAX * visibleSize.width;
-		ey = (float)rand() / RAND_MAX * visibleSize.height;
+	TintTo* tintTo = TintTo::create(1.0f, Color3B(255, 255, 0));
 
-		MoveTo* action1 = MoveTo::create(1.0f, Vec2(ex, ey));
-		sprite[i]->runAction(action1);
-	}
+	Sequence* action3 = Sequence::create(action1, action2, tintTo, nullptr);
 
-	//// spriteの生成
-	//sprite = Sprite::create("kuma.png");
-	//this->addChild(sprite);
-	//sprite->setPosition(Vec2(visibleSize.width / 2.0f, visibleSize.height / 2.0f));
-	//sprite->setScale(0.2f);
-
-	//// sprite2の生成
-	//sprite2 = Sprite::create("panda.jpg");
-	//this->addChild(sprite2);
-	//sprite2->setPosition(Vec2(900, visibleSize.height / 2.0f));
-	//sprite2->setScale(0.2f);
-
-	//// action1の生成
-	//JumpBy* action1 = JumpBy::create(1.0f, Vec2(300, 0), 300, 1);
-	//sprite->runAction(action1);
-	//sprite2->runAction(action1->clone());
-	//// action2の生成
-	//MoveBy* action2 = MoveBy::create(1.0f, Vec2(400, 200));
-	//sprite2->runAction(action2);
-
-	//EaseInOut* action2 = EaseInOut::create(action1, 2.0f);
-	//ScaleBy* action1 = ScaleBy::create(1.0f, 5.0f);
-	//JumpTo* action1 = JumpTo::create(1.0f, Vec2(200, 100), 500.0f, 2);
-	//// ベジェ曲線
-	//ccBezierConfig conf;
-	//conf.controlPoint_1 = Vec2(800, 700);
-	//conf.controlPoint_2 = Vec2(1000, 700);
-	//conf.endPosition = Vec2(1200, 360);
-	//BezierTo* action1 = BezierTo::create(2.0f, conf);
-	//sprite->setOpacity(0);
-	//FadeIn* action1 = FadeIn::create(1.0f);
-
-	//sprite2 = Sprite::create("panda.jpg");
-	//this->addChild(sprite2);
-	//sprite2->setPosition(Vec2(visibleSize.width / 2.0f, visibleSize.height / 2.0f));
+	spr->runAction(action3);
 
 
-	//sprite->setScale(5.0f);
-	//sprite->setTextureRect(Rect(64, 0, 32, 32));
-	//sprite->setFlippedX(true);
-	// 画像の基準点（アンカーポイント）を設定
-	// (0,0)…左下
-	// (1,1)…右上
-	//sprite->setAnchorPoint(Vec2(0, 1));
-	//sprite->setRotation(135.0f);
-	//sprite->setVisible(false);
-	//                        R    G    B
-	//sprite->setColor(Color3B(  0,   0,   0));
-	//sprite->setColor(Color3B(  0,   0, 255));
-	//opacity = 255.0f;
-
-	//sprite->setOpacity(opacity);
 	// update関数を有効にする
 	this->scheduleUpdate();
 
