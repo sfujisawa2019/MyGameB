@@ -105,16 +105,16 @@ bool HelloWorld::init()
 	Sprite* spr = Sprite::create("HelloWorld.png");
 	this->addChild(spr);
 
-	JumpBy* jumpBy = JumpBy::create(0.5f, Vec2(100.0f, 100.0f), 100.0f, 1);
-
 	MoveTo* moveTo = MoveTo::create(0.5f, Vec2(600.0f, 300.0f));
 
-	Sequence* seq = Sequence::create(jumpBy, moveTo, nullptr);
-
+	JumpBy* jumpBy = JumpBy::create(0.5f, Vec2(100.0f, 100.0f), 100.0f, 1);
 	// 繰り返しアクションの生成
-	RepeatForever* rep = RepeatForever::create(seq);
+	RepeatForever* rep = RepeatForever::create(jumpBy);
 
-	spr->runAction(rep);
+	Sequence* seq = Sequence::create(moveTo, rep, nullptr);
+
+
+	spr->runAction(seq);
 
 	//MoveTo* moveTo = MoveTo::create(2.0f, Vec2(600.0f, 300.0f));
 
