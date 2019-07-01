@@ -101,42 +101,21 @@ bool HelloWorld::init()
         this->addChild(label, 1);
     }
 
-	// スプライトの生成
+	// Spriteの生成
 	Sprite* spr = Sprite::create("HelloWorld.png");
 	this->addChild(spr);
-	spr->setPosition(Vec2(600, 600));
-	//// スプライトの解放
-	//spr->removeFromParent();
+	spr->setPosition(Vec2(visibleSize.width - 100, visibleSize.height - 100));
+	spr->setScale(0.2f);
 
-	MoveTo* moveTo = MoveTo::create(0.5f, Vec2(600.0f, 300.0f));
-	// 指定秒数待つアクションの生成
-	DelayTime* delay = DelayTime::create(1.0f);
-	// スプライト解放アクションの生成
-	RemoveSelf * remove = RemoveSelf::create();
+	// 移動アクションの生成
+	MoveTo* moveLeft = MoveTo::create(5.0f, Vec2(100, visibleSize.height - 100));
+	MoveTo* moveRight = MoveTo::create(5.0f, Vec2(visibleSize.width - 100, visibleSize.height - 100));
 
-	Sequence* seq = Sequence::create(moveTo, delay, remove, nullptr);
-	////Hide* hide = Hide::create();
-	//ToggleVisibility* toggle = ToggleVisibility::create();
+	// 連続アクションの生成
+	Sequence* seq = Sequence::create(moveLeft, moveRight, nullptr);
 
-	////JumpBy* jumpBy = JumpBy::create(0.5f, Vec2(100.0f, 100.0f), 100.0f, 1);
-	////// 繰り返しアクションの生成
-	//Repeat* rep = Repeat::create(seq, 6);
-
-
+	// アクションの実行
 	spr->runAction(seq);
-
-	//MoveTo* moveTo = MoveTo::create(2.0f, Vec2(600.0f, 300.0f));
-
-	//JumpTo* jumpTo = JumpTo::create(1.0f, Vec2(200.0f, 200.0f), 300.0f, 2);
-
-	//TintTo* tintTo = TintTo::create(1.0f, Color3B(255, 255, 0));
-	//// 同時発動アクションの生成
-	//Spawn* spawn = Spawn::create(jumpTo, tintTo, nullptr);
-	//// 連続アクションの生成
-	//Sequence* seq = Sequence::create(moveTo, spawn, nullptr);
-
-	//spr->runAction(seq);
-
 
 	// update関数を有効にする
 	this->scheduleUpdate();
