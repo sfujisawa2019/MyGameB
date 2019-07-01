@@ -106,13 +106,14 @@ bool HelloWorld::init()
 	this->addChild(spr);
 
 	MoveTo* moveTo = MoveTo::create(0.5f, Vec2(600.0f, 300.0f));
+	// 指定秒数待つアクションの生成
+	DelayTime* delay = DelayTime::create(1.0f);
 
 	JumpBy* jumpBy = JumpBy::create(0.5f, Vec2(100.0f, 100.0f), 100.0f, 1);
-	// 繰り返しアクションの生成
-	RepeatForever* rep = RepeatForever::create(jumpBy);
+	//// 繰り返しアクションの生成
+	//Repeat* rep = Repeat::create(jumpBy, 5);
 
-	Sequence* seq = Sequence::create(moveTo, rep, nullptr);
-
+	Sequence* seq = Sequence::create(moveTo, delay, jumpBy, nullptr);
 
 	spr->runAction(seq);
 
