@@ -107,12 +107,12 @@ bool HelloWorld::init()
 
 	JumpBy* jumpBy = JumpBy::create(0.5f, Vec2(100.0f, 100.0f), 100.0f, 1);
 
-	MoveTo* moveTo = MoveTo::create(2.0f, Vec2(600.0f, 300.0f));
+	MoveTo* moveTo = MoveTo::create(0.5f, Vec2(600.0f, 300.0f));
 
 	Sequence* seq = Sequence::create(jumpBy, moveTo, nullptr);
 
 	// 繰り返しアクションの生成
-	Repeat* rep = Repeat::create(seq, 10);
+	RepeatForever* rep = RepeatForever::create(seq);
 
 	spr->runAction(rep);
 
