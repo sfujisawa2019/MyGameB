@@ -101,26 +101,7 @@ bool HelloWorld::init()
         this->addChild(label, 1);
     }
 
-	// Spriteの生成
-	Sprite* spr = Sprite::create("HelloWorld.png");
-	this->addChild(spr);
-	spr->setPosition(Vec2(visibleSize.width - 100, visibleSize.height - 100));
-	spr->setScale(0.2f);
-
-	// 移動アクションの生成
-	MoveBy* moveLeft = MoveBy::create(1.0f, Vec2(-(visibleSize.width - 200), 0));
-	MoveBy* moveDown = MoveBy::create(1.0f, Vec2(0, -(visibleSize.height - 200)));
-	MoveBy* moveRight = MoveBy::create(1.0f, Vec2(visibleSize.width - 200, 0));
-	MoveBy* moveUp = MoveBy::create(1.0f, Vec2(0, visibleSize.height - 200));
-
-	// 連続アクションの生成
-	Sequence* seq1 = Sequence::create(moveLeft, moveDown, moveRight, moveUp, nullptr);
-
-	// 無限繰り返しアクションの生成
-	RepeatForever* repeat = RepeatForever::create(seq1);
-
-	// アクションの実行
-	spr->runAction(repeat);
+	
 
 	// update関数を有効にする
 	this->scheduleUpdate();
