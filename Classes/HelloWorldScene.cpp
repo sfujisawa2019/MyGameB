@@ -104,9 +104,13 @@ bool HelloWorld::init()
 
 	DelayTime* delay = DelayTime::create(1.0f);
 	// 関数呼び出しアクション
+	//CallFunc* callFunc = CallFunc::create(
+	//	CC_CALLBACK_0(HelloWorld::myFunction, this));
 	CallFunc* callFunc = CallFunc::create(
-		CC_CALLBACK_0(HelloWorld::myFunction, this));
-	Sequence* seq = Sequence::create(delay, callFunc, nullptr);
+		CC_CALLBACK_0(HelloWorld::myFunction2, this, "HelloWorld.png"));
+	CallFunc* callFunc2 = CallFunc::create(
+		CC_CALLBACK_0(HelloWorld::myFunction2, this, "panda.jpg"));
+	Sequence* seq = Sequence::create(delay, callFunc, delay, callFunc2, nullptr);
 
 	this->runAction(seq);
 	//this->myFunction();
@@ -141,6 +145,13 @@ void HelloWorld::update(float delta)
 void HelloWorld::myFunction()
 {
 	Sprite* spr = Sprite::create("HelloWorld.png");
+	this->addChild(spr);
+	spr->setPosition(Vec2(500, 500));
+}
+
+void HelloWorld::myFunction2(std::string filename)
+{
+	Sprite* spr = Sprite::create(filename);
 	this->addChild(spr);
 	spr->setPosition(Vec2(500, 500));
 }
