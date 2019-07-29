@@ -97,6 +97,13 @@ void HelloWorld::myFunction2(std::string filename)
 
 bool HelloWorld::onTouchBegan(Touch* touch, Event* unused_event)
 {
+	// タッチ座標の取得
+	Vec2 touch_pos = touch->getLocation();
+	// スプライトの生成
+	Sprite* spr = Sprite::create("CloseNormal.png");
+	this->addChild(spr);
+	spr->setPosition(touch_pos);
+
 	// サウンド再生                    ファイル名
 	experimental::AudioEngine::play2d("test.mp3");
 
