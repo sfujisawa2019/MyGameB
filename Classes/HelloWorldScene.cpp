@@ -53,27 +53,6 @@ bool HelloWorld::init()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-
-
-	DelayTime* delay = DelayTime::create(3.0f);
-	// 関数呼び出しアクション
-	//CallFunc* callFunc = CallFunc::create(
-	//	CC_CALLBACK_0(HelloWorld::myFunction, this));
-	CallFunc* callFunc = CallFunc::create(
-		CC_CALLBACK_0(HelloWorld::myFunction2, this, "HelloWorld.png"));
-	CallFunc* callFunc2 = CallFunc::create(
-		CC_CALLBACK_0(HelloWorld::myFunction2, this, "panda.jpg"));
-	Sequence* seq = Sequence::create(delay, callFunc, delay, callFunc2, nullptr);
-
-	this->runAction(seq);
-	//this->myFunction();
-
-	// サウンド再生								  ループ 音量
-	audioID = experimental::AudioEngine::play2d("testbgm.mp3", false, 0.8f);
-
-	// update関数を有効にする
-	this->scheduleUpdate();
-
     return true;
 }
 
